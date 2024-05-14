@@ -11,8 +11,8 @@ import java.util.List;
 @RestController
 public class RestfulController {
     @GetMapping("/products/{size}")
-    public Product getProducts(@PathVariable int size) {
-        return buildResult(size).get(0);
+    public List<Product> getProducts(@PathVariable int size) {
+        return buildResult(size);
     }
 
     private List<Product> buildResult(int size) {
