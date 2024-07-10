@@ -25,7 +25,7 @@ public class ProductService extends ProductServiceGrpc.ProductServiceImplBase {
         for (int i = 0; i < size; i++) {
             Product product = Product.newBuilder()
                     .setQuantity(100)
-                    .setName("StreamServer " + i)
+                    .setName("Product From Server " + i)
                     .setYear(2000 + ThreadLocalRandom.current().nextInt(23))
                     .setPrice(29.99 + ThreadLocalRandom.current().nextInt(100))
                     .build();
@@ -35,10 +35,11 @@ public class ProductService extends ProductServiceGrpc.ProductServiceImplBase {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Product " + product.getName() + "is sent.");
+            System.out.println(product.getName() + " is sent to client.");
         }
+        System.out.println(size + " of products has been sent to client. Completed!");
         responseObserver.onCompleted();
-        System.out.println(size + " of products has sent. Completed!");
+        System.out.println("Server Complete sending!");
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ProductService extends ProductServiceGrpc.ProductServiceImplBase {
         List<Product> res = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             res.add(Product.newBuilder()
-                    .setName("ProductGrpc " + i)
+                    .setName("Product " + i)
                     .setYear(2022)
                     .setPrice(199.99)
                     .setQuantity(10000)

@@ -7,7 +7,6 @@
 
     <modules>
         <module>grpc-service</module>
-        <module>rest-service</module>
     </modules>
 
     <parent>
